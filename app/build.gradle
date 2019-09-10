@@ -4,12 +4,29 @@ android {
     compileSdkVersion 28
     buildToolsVersion "28.0.3"
     defaultConfig {
+        multiDexEnabled true // 突破方法数65535限制
+        manifestPlaceholders = [UMENG_CHANNEL_VAULE: "umeng"]
+
         applicationId "com.example.licoolweather"
         minSdkVersion 15
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        flavorDimensions "1"
+    }
+    signingConfigs {
+        release {
+            keyAlias 'Lixingweidev'
+            keyPassword '809006'
+            storeFile file('Lixingwei.jks')
+            storePassword '809006'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
     buildTypes {
         release {
@@ -17,6 +34,14 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    productFlavors{
+        qihoo{applicationId "com.example.licoolweather"
+            dimension "1"  }
+        baidu{applicationId "com.example.licoolweather"
+            dimension "1"  }
+        productFlavors.all {flavor -> flavor.manifestPlaceholders = [UMENG_CHANNEL_VAULE: name]
+
+        }
 }
 
 dependencies {
@@ -27,7 +52,6 @@ dependencies {
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
-    implementation 'com.android.support:appcompat-v7:27.0.1'
 
     implementation 'org.litepal.android:java:3.0.0'
     implementation 'com.squareup.okhttp3:okhttp:3.4.1'

@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.licoolweather">
+    package="com.example.licoolweather"
+    android:versionCode="2"
+    android:versionName="2.1">
     <!-- 添加读写权限 -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
@@ -26,6 +28,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".WeatherActivity" />
+        //这里的value="5a446bf5f29d987bd200008a"是在友盟里面自己账号生成的，看图
+        <meta-data android:value="5a446bf5f29d987bd200008a" android:name="UMENG_APPKEY"/>
+        <meta-data android:value="${UMENG_CHANNEL_VAULE}" android:name="UMENG_CHANNEL"/>
+
     </application>
 
 </manifest>
